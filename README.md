@@ -3,6 +3,8 @@ This is a solution for the Deep Reinforcement Learning nanodegree project "Conti
 
 The code used in this solution is adopted from the Udacity repository below, and I have included the MIT license in all files that I have modified.
 
+# Repository files:
+
 # Environment:
 The environment is provided by Unity with the name "reacher", in this environment a double-jointed arm can move to target locations. A reward of +0.1 is provided for each step that the agent's hand is in the goal location. Thus, the goal of the agent is to maintain its position at the target location for as many time steps as possible.
 
@@ -28,7 +30,29 @@ In DDPG we use two deep neural networks, we call one the actor and the other one
 -  Critic: takes the input state S, then it tries to calculate the optimal action-value function by using the actor's best-believed action
 -  
 Two interesting aspects of DDPG are:
-- The use of replay buffer
+- The use of a replay buffer
 - Soft updates to the target networks:
     - In DQN you have two copies of the network weights: the regular network and the target network, where the target network gets a big update every n-step by simply copying the weights of the regular network into the target network
     - IN DDPG, you have two copies of the network weights for each network, a regular for the critic an irregular for the critic, a target for the actor, and a target for the critic, but in DDPG the target networks are updated using a soft updates strategy which is slowly blending the regular network weights with the target network weights, so every time step you mix in 0.01% of regular network weights with target network weights
+ 
+# DDPG Chosen Hyperparameters:
+- Replay buffer size: 100000 
+- Minibatch size: 128
+- Discount factor: 0.99
+- TAU for soft update of target parameters: 0.001
+- Learning rate of the actor: 0.001
+- Learning rate of the critic: 0.001
+
+# Neural Networks Architecture:
+- Actor Network consists of:
+    - Fully connected layer which takes the state with the size 33, and outputs 256
+    - Fully connected layer which takes the ReLU of the output of the previous layer and outputs 4 logits, each representing an action
+    - The output from the previous layer is passed through a tanh to ensure the output actions are between -1 and 1 
+
+- Critc Network consists of:
+    - Fully connected layer which takes the state with the size 33, and outputs 256
+    - Fully connected layer which takes the Leaky ReLU of the output of the previous layer along the actions chosen by the actor with size 260 and outputs 256
+    - Fully connected layer which takes the Leaky ReLU of the output of the previous layer and outputs 128
+    - Fully connected layer which takes the Leaky ReLU of the output of the previous layer and outputs 1 logit which resembles the State-Value
+
+
