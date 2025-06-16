@@ -14,21 +14,21 @@ In each episode, each agent's score is calculated separately by summing all rewa
 The environment is considered solved when the 100-episode moving average of agents' average scores is at least +30
 
 To download the Unity Reacher environment:
-Linux: https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Linux.zip
-Mac OSX: https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher.app.zip
-Windows (32-bit): https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Windows_x86.zip
-Windows (64-bit): https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Windows_x86_64.zip
+- Linux: https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Linux.zip
+- Mac OSX: https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher.app.zip
+- Windows (32-bit): https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Windows_x86.zip
+- Windows (64-bit): https://s3-us-west-1.amazonaws.com/udacity-drlnd/P2/Reacher/Reacher_Windows_x86_64.zip
 
 
 # DDPG:
 DDPG or Deep Deterministic Policy Gradient is the algorithem used in this project to solve the enviroment, DDPG is a different kind of actor-critic method, and it could be seen as an approximate DQN instead of an actual actor-critic, because the critic in DDPG is used to approximate the maximizer over the Q values of the next state and not as a baseline.
 One of the limitations of the DQN agent is that it is not straightforward to use in continuous action spaces
 In DDPG we use two deep neural networks, we call one the actor and the other one is the critic:
-    1-Actor: takes the state S as input, and outputs the optimal policy deterministically (s;), the output is the best believed action for any given state unlike the discrete case where the output (a|s;) is a probability distribution over all possible actions, the actor is basically learning the argmaxaQ(s,a)
-Critic: takes the input state S, then it tries to calculate the optimal action-value function by using the actors best believed action Q(s,(s;); Q)
-DDPG: Deep Deterministic Policy Gradient, Soft Updates:
+-  Actor: takes the state S as input, and outputs the optimal policy deterministically, the output is the best believed action for any given state unlike the discrete case where the output is a probability distribution over all possible actions, the actor is basically learning the argmax Q(s,a)
+-  Critic: takes the input state S, then it tries to calculate the optimal action-value function by using the actor's best-believed action
+-  
 Two interesting aspects of DDPG are:
-The use of replay buffer
-Soft updates to the target networks: 
-In DQN you have two copies of the network weights: the regular network and the target network, where the target network gets a big update every n-step by simply copying the weights of the regular network into the target network
-IN DDPG, you have two copies of the network weights for each network, a regular for the critic an irregular for the critic, a target for the actor, and a target for the critic, but in DDPG the target networks are updated using a soft updates strategy which is slowly blending the regular network weights with the target network weights, so every time step you mix in 0.01% of regular network weights with target network weights
+- The use of replay buffer
+- Soft updates to the target networks:
+    - In DQN you have two copies of the network weights: the regular network and the target network, where the target network gets a big update every n-step by simply copying the weights of the regular network into the target network
+    - IN DDPG, you have two copies of the network weights for each network, a regular for the critic an irregular for the critic, a target for the actor, and a target for the critic, but in DDPG the target networks are updated using a soft updates strategy which is slowly blending the regular network weights with the target network weights, so every time step you mix in 0.01% of regular network weights with target network weights
