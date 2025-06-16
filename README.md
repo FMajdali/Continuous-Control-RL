@@ -11,6 +11,21 @@ https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal
 - checkpoint_critic.pth: contains the trained weights for the critic network
 - checkpoint_actor.pth: contains the trained weights for the actor network
 
+# Python Requirements:
+- Pillow>=4.2.1
+- matplotlib
+- numpy>=1.11.0
+- jupyter
+- pytest>=3.2.2
+- docopt
+- pyyaml
+- protobuf>=3.5.2
+- grpcio>=1.11.0
+- torch
+- pandas
+- scipy
+- ipykernel
+
 # Environment:
 The environment is provided by Unity with the name "reacher", in this environment a double-jointed arm can move to target locations. A reward of +0.1 is provided for each step that the agent's hand is in the goal location. Thus, the goal of the agent is to maintain its position at the target location for as many time steps as possible.
 
@@ -69,4 +84,5 @@ The code is adopted from Udacity but with the following changes (adapted to 20 a
 - Modified the "sample" method in the OUNoise class to generate a different noise for each agent and action
 - Modified the training loop to adapt with the Unity environment, also made the updates to occur every 20 time-steps, and it updates the networks 10 times
 
-*The environment was solved in 20 episodes as the below graph indicates*
+**The environment was solved in 20 episodes, as the below graph indicates**
+![alt text](https://github.com/FMajdali/Continuous-Control-RL/blob/main/DDPG%20Training%20Graph.jpg))
