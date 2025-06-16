@@ -5,7 +5,7 @@ The code used in this solution is adopted from the Udacity repository below, and
 https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-bipedal
 
 # Repository files:
-- Continuous_Control.ipynb: The Jupyter notebook provided by Udacity for this project, contains the initial instructions and my solution (training loop) 
+- Continuous_Control.ipynb: The Jupyter notebook provided by Udacity for this project, contains the initial instructions and the training loop that initializes the agents and networks and starts the learning process.
 - model.py: contains the neural network architecture for both Actor and Critic
 - ddpg_agent.py: contains a class named Agent, which have all the required methods to train the agent
 - checkpoint_critic.pth: contains the trained weights for the critic network
@@ -84,5 +84,10 @@ The code is adopted from Udacity but with the following changes (adapted to 20 a
 - Modified the "sample" method in the OUNoise class to generate a different noise for each agent and action
 - Modified the training loop to adapt with the Unity environment, also made the updates to occur every 20 time-steps, and it updates the networks 10 times
 
-**The environment was solved in 20 episodes, as the below graph indicates**
+**The environment was solved in 20 episodes, as the graph below indicates**
 ![alt text](https://github.com/FMajdali/Continuous-Control-RL/blob/main/DDPG%20Training%20Graph.jpg))
+
+
+# Future Ideas:
+Another approach could be used to solve the problem like A2C, A3C, or D4PG.
+Another hyperparameter could be tested to see if there is any enhancement to the model convergence and scores
